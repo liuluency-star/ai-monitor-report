@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>竞对服务市场每日监控简报 - 交互版</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --ink: #152033;
+      --muted: #607086;
+      --line: #d9e2ee;
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --accent: #2563eb;
+      --warn: #b45309;
+      --warn-bg: #fff7ed;
+      --good-bg: #ecfdf5;
+      --blue-bg: #eff6ff;
+      --shadow: 0 10px 28px rgba(21, 32, 51, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    header {
+      background: #0f172a;
+      color: #fff;
+      padding: 28px 20px;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      gap: 10px;
+      min-width: min(520px, 100%);
+    }
+
+    .metric {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric b {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .metric span {
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+
+    main { padding: 22px 0 48px; }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(244, 247, 251, 0.96);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar-inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      width: 100%;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 14px;
+      background: var(--panel);
+      color: var(--ink);
+    }
+
+    .segments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    button {
+      height: 38px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    aside {
+      position: sticky;
+      top: 76px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .nav-title {
+      padding: 14px 16px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav button {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border: 0;
+      border-bottom: 1px solid #eef2f7;
+      border-radius: 0;
+      padding: 12px 16px;
+      text-align: left;
+      background: #fff;
+    }
+
+    .nav button.active {
+      background: #ecfdf5;
+      color: var(--primary-dark);
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: 0;
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .source a { color: var(--accent); }
+
+    .body { padding: 18px; }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .insight {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+      min-height: 130px;
+    }
+
+    .insight b {
+      display: block;
+      margin-bottom: 8px;
+      color: #0f3f5f;
+    }
+
+    .insight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .status {
+      border-left: 4px solid var(--warn);
+      background: var(--warn-bg);
+      padding: 12px 14px;
+      border-radius: 8px;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .ok {
+      border-left-color: var(--primary);
+      background: var(--good-bg);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 12px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--blue-bg);
+      color: #1d4ed8;
+      font-size: 12px;
+    }
+
+    .tag.green {
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .tag.gray {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .notice-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #fff;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    th, td {
+      border-bottom: 1px solid #e6edf5;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #155e75;
+      color: #fff;
+      position: sticky;
+      top: 64px;
+      z-index: 1;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .empty {
+      display: none;
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .toolbar-inner,
+      .layout,
+      .insight-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+      }
+
+      .source {
+        text-align: left;
+      }
+
+      .section-head {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div>
+        <h1>竞对服务市场每日监控简报</h1>
+        <div class="sub">日期：2026年06月30日｜交互版｜数据来源仅限用户指定页面</div>
+      </div>
+      <div class="meta" aria-label="核心指标">
+        <div class="metric"><b>17</b><span>服务市场工具样本</span></div>
+        <div class="metric"><b>10</b><span>抖店学习中心更新</span></div>
+        <div class="metric"><b>1</b><span>36氪融资快讯</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="wrap toolbar-inner">
+      <input id="search" class="search" type="search" placeholder="搜索工具、公告、功能更新或洞察">
+      <div class="segments" aria-label="内容类型筛选">
+        <button class="filter active" data-filter="all">全部</button>
+        <button class="filter" data-filter="tool">工具</button>
+        <button class="filter" data-filter="notice">公告</button>
+        <button class="filter" data-filter="insight">洞察</button>
+      </div>
+      <button id="clear">重置</button>
+    </div>
+  </div>
+
+  <main class="wrap layout">
+    <aside>
+      <div class="nav-title">报告导航</div>
+      <div class="nav">
+        <button class="jump active" data-target="overview">综合洞察 <span class="count">3条</span></button>
+        <button class="jump" data-target="taobao">淘宝侧状态 <span class="count">3页</span></button>
+        <button class="jump" data-target="douyin">抖音服务市场 <span class="count">17项</span></button>
+        <button class="jump" data-target="school">抖店学习中心 <span class="count">10项</span></button>
+        <button class="jump" data-target="finance">融资快讯 <span class="count">1条</span></button>
+      </div>
+    </aside>
+
+    <div>
+      <section id="overview" data-kind="insight">
+        <div class="section-head">
+          <h2>综合洞察</h2>
+          <div class="source">结论来自本页各指定来源汇总</div>
+        </div>
+        <div class="body">
+          <div class="insight-grid">
+            <div class="insight searchable" data-kind="insight">
+              <b>AI服务成为显性专区</b>
+              <p>抖音服务市场的 AI 服务覆盖商品反馈分析、店铺诊断、外呼触达，AI 正从内容生成延伸到运营决策与客户触达。</p>
+            </div>
+            <div class="insight searchable" data-kind="insight">
+              <b>工具供给与学习中心联动</b>
+              <p>服务市场承担工具发现与转化，学习中心承担功能教育和流程解释，形成“工具供给 + 商家培训”的组合。</p>
+            </div>
+            <div class="insight searchable" data-kind="insight">
+              <b>淘宝侧需人工核验</b>
+              <p>淘宝服务市场、生意管家、千牛 AI 在内置浏览器与 Chrome 插件中均触发自动访问安全限制，需纳入人工截图或账号内复核流程。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="taobao" data-kind="notice">
+        <div class="section-head">
+          <h2>淘宝服务市场 / 生意管家 / 千牛 AI</h2>
+          <div class="source">
+            <a href="https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L">淘宝服务市场</a><br>
+            <a href="https://quick.taobao.com/">淘宝生意管家</a>｜<a href="https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT">千牛 AI</a>
+          </div>
+        </div>
+        <div class="body">
+          <div class="status searchable" data-kind="notice">
+            抓取失败，请人工检查。已分别尝试内置浏览器与 Chrome 插件打开淘宝服务市场、淘宝生意管家、千牛 AI，均被浏览器安全策略禁止自动访问。该失败不代表页面无内容，也不是账号密码错误。
+          </div>
+          <div class="notice-list">
+            <details class="searchable" data-kind="notice" open>
+              <summary>本次影响范围</summary>
+              <p>无法判断淘宝服务市场的新工具、公告、类目或页面结构变化；无法读取淘宝生意管家与千牛 AI 的最新页面信息。</p>
+            </details>
+            <details class="searchable" data-kind="insight">
+              <summary>建议处理方式</summary>
+              <p>短期建议将淘宝侧纳入人工登录复核或截图流程，再由日报任务引用人工上传内容；这样可以避免自动访问被阻断造成竞品更新漏报。</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="douyin" data-kind="tool">
+        <div class="section-head">
+          <h2>抖音精选服务市场</h2>
+          <div class="source"><a href="https://fuwu.jinritemai.com/">https://fuwu.jinritemai.com/</a></div>
+        </div>
+        <div class="body">
+          <div class="status ok searchable" data-kind="insight">
+            抓取成功。首页重点展示推荐服务、市场公告、5月金牌服务榜单、精选 AI 服务、店铺经营工具与内容流量工具。
+          </div>
+          <div class="cards" id="toolCards"></div>
+        </div>
+      </section>
+
+      <section id="school" data-kind="notice">
+        <div class="section-head">
+          <h2>抖店学习中心 - 功能中心</h2>
+          <div class="source"><a href="https://school.jinritemai.com/doudian/web/funcs/11712?tabKey=funcs&from=shop_table&btm_ppre=a4977.b4369.c0.d0&btm_pre=a4977.b7658.c0.d0&btm_show_id=cae8adaf-0218-4d74-8cc2-6d7eeb667065">功能中心原页</a></div>
+        </div>
+        <div class="body">
+          <div class="status ok searchable" data-kind="notice">
+            Chrome 插件重试抓取成功。页面显示共 1054 个筛选结果，并按商家、达人、MCN机构/团长/抖客、服务商等角色，以及开店、经营、商品、订单、客服、售后、营销、用户、资金等模块组织。
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>日期</th><th>状态</th><th>功能上新 / 更新标题</th><th>观察</th></tr></thead>
+              <tbody id="schoolRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="finance" data-kind="notice">
+        <div class="section-head">
+          <h2>36氪每日融资快讯</h2>
+          <div class="source"><a href="https://36kr.com/newsflashes/">https://36kr.com/newsflashes/</a></div>
+        </div>
+        <div class="body">
+          <details class="searchable" data-kind="notice" open>
+            <summary>2026/06/30：量旋科技完成 10 亿元 D 轮融资</summary>
+            <p>合肥兴泰、肥西产投、温州国资联合领投；元禾璞华、联想创投、普华资本等老股东跟投。资金将用于大规模可编程量子计算机研发、芯片量产线建设、全球市场拓展及行业生态建设。</p>
+          </details>
+        </div>
+      </section>
+
+      <div id="empty" class="empty">没有匹配到内容，换个关键词或重置筛选试试。</div>
+    </div>
+  </main>
+
+  <script>
+    const tools = [
+      ["飞影AI", "面向电商商家的用户反馈智能分析工具，基于 AI 拆解竞品/自家商品公开评价，识别用户痛点、市场机会和产品优化方向。", "免费试用", "100", "127", "精选AI服务"],
+      ["麦爆了_Ai诊断运营助手", "AI 一键诊断店铺质量分、商品搜索诊断、商品质量分，批量或自动优化商品信息。", "免费试用", "100", "96", "精选AI服务"],
+      ["灵狐AI智能外呼", "AI 外呼与挂机短信双触达，支持催付、邀评、售后挽单与私域营销。", "免费试用", "100", "53", "精选AI服务"],
+      ["智能店长_开店必备_智能店长全能上货必备", "商品上架、商品裂变、云商品库、多店管理、AI换图、AI换标题、批量修改、水印打标、自动发布抖音视频等。", "页面未展示", "94", "1843158", "推荐服务/商品管理"],
+      ["麦爆了铺货上货复制商品管理批量修改抖搬家", "AI 爆品裂变、滞销商品翻新、跨平台授权搬家、1688 选品铺货、AI 主图视频生成等。", "免费试用", "96", "283796", "商品管理"],
+      ["小猪批量修改", "批量修改商品、SKU、水印、属性、价格、库存、标题、上下架、运费模板，支持 Excel 导入导出。", "免费试用", "94", "155431", "商品管理"],
+      ["晓风上货-商品管理搬家", "商品裂变、侵权检测、换主图标题、1688 分销铺货、批量编辑、标题 SEO 优化等。", "免费试用", "92", "202720", "商品管理"],
+      ["数据赢家CRM", "客户管理、数据分析、高效营销，基于历史成交行为和购买偏好做精准短信营销。", "¥29.9起", "92", "2990", "营销短信"]
+    ];
+
+    const schoolUpdates = [
+      ["2026/06/30", "新", "开店必备卡功能介绍", "最新功能上新，指向开店基础能力。"],
+      ["2026/06/29", "更", "抖音支付风控解除指引流程（个体户/企业）", "支付风控流程解释增强。"],
+      ["2026/06/29", "更", "抖音支付风控解除指引流程（个人身份证）", "支付风控流程按主体类型拆分。"],
+      ["2026/06/29", "更", "抖店会员数据页面重磅升级", "会员运营与数据分析能力更新。"],
+      ["2026/06/29", "更", "用户触达｜购物车降价提醒", "用户触达链路继续细化。"],
+      ["2026/06/29", "更", "会员抽签购上线说明", "会员权益与活动玩法更新。"],
+      ["2026/06/29", "更", "会员专享券&会员复购券配置指南", "会员复购激励工具说明更新。"],
+      ["2026/06/29", "更", "微信开户【无经营销售声明函】填写指引", "开户材料与流程说明。"],
+      ["2026/06/29", "更", "“直播间满额返”活动合作协议", "直播间活动协议更新。"],
+      ["2026/06/29", "更", "抖音到店安装项目-额外加收费用报价", "本地服务履约收费说明。"]
+    ];
+
+    const toolCards = document.querySelector("#toolCards");
+    toolCards.innerHTML = tools.map(([name, desc, price, score, buyers, category]) => `
+      <article class="card searchable" data-kind="tool">
+        <h3>${name}</h3>
+        <p class="desc">${desc}</p>
+        <div class="tags">
+          <span class="tag green">${price}</span>
+          <span class="tag">评分 ${score}</span>
+          <span class="tag">${buyers} 已买</span>
+          <span class="tag gray">${category}</span>
+        </div>
+      </article>
+    `).join("");
+
+    document.querySelector("#schoolRows").innerHTML = schoolUpdates.map(([date, status, title, note]) => `
+      <tr class="searchable" data-kind="notice">
+        <td>${date}</td><td>${status}</td><td>${title}</td><td>${note}</td>
+      </tr>
+    `).join("");
+
+    const search = document.querySelector("#search");
+    const clear = document.querySelector("#clear");
+    const filters = [...document.querySelectorAll(".filter")];
+    const items = () => [...document.querySelectorAll(".searchable")];
+    let activeFilter = "all";
+
+    function applyFilters() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      items().forEach(item => {
+        const matchesText = !query || item.textContent.toLowerCase().includes(query);
+        const matchesKind = activeFilter === "all" || item.dataset.kind === activeFilter;
+        const show = matchesText && matchesKind;
+        item.style.display = show ? "" : "none";
+        if (show) visible += 1;
+      });
+      document.querySelector("#empty").style.display = visible ? "none" : "block";
+    }
+
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        filters.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        activeFilter = button.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    search.addEventListener("input", applyFilters);
+    clear.addEventListener("click", () => {
+      search.value = "";
+      activeFilter = "all";
+      filters.forEach(item => item.classList.toggle("active", item.dataset.filter === "all"));
+      applyFilters();
+    });
+
+    document.querySelectorAll(".jump").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".jump").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        document.querySelector("#" + button.dataset.target).scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
