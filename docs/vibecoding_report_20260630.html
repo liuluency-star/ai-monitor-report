@@ -275,6 +275,88 @@
       gap: 12px;
     }
 
+    .category-block {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .category-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border-bottom: 1px solid #e6edf5;
+      background: #f8fafc;
+    }
+
+    .category-head h3 {
+      margin: 0 0 5px;
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .category-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .category-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 150px;
+    }
+
+    .tool-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .tool-mini {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 10px;
+      border: 1px solid #edf2f7;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .tool-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .tool-mini h4 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .tool-mini p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     .card {
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -383,7 +465,8 @@
       .toolbar-inner,
       .layout,
       .insight-grid,
-      .cards {
+      .cards,
+      .tool-list {
         grid-template-columns: 1fr;
       }
 
@@ -398,6 +481,14 @@
       .section-head {
         flex-direction: column;
       }
+
+      .category-head {
+        flex-direction: column;
+      }
+
+      .category-stat {
+        justify-content: flex-start;
+      }
     }
   </style>
 </head>
@@ -409,9 +500,9 @@
         <div class="sub">日期：2026年06月30日｜交互版｜数据来源仅限用户指定页面</div>
       </div>
       <div class="meta" aria-label="核心指标">
-        <div class="metric"><b>17</b><span>服务市场工具样本</span></div>
+        <div class="metric"><b>76</b><span>服务市场工具样本</span></div>
+        <div class="metric"><b>59</b><span>淘宝首页推荐工具</span></div>
         <div class="metric"><b>10</b><span>抖店学习中心更新</span></div>
-        <div class="metric"><b>1</b><span>36氪融资快讯</span></div>
       </div>
     </div>
   </header>
@@ -434,7 +525,7 @@
       <div class="nav-title">报告导航</div>
       <div class="nav">
         <button class="jump active" data-target="overview">综合洞察 <span class="count">3条</span></button>
-        <button class="jump" data-target="taobao">淘宝侧状态 <span class="count">3页</span></button>
+        <button class="jump" data-target="taobao">淘宝首页推荐 <span class="count">59项</span></button>
         <button class="jump" data-target="douyin">抖音服务市场 <span class="count">17项</span></button>
         <button class="jump" data-target="school">抖店学习中心 <span class="count">10项</span></button>
         <button class="jump" data-target="finance">融资快讯 <span class="count">1条</span></button>
@@ -458,33 +549,44 @@
               <p>服务市场承担工具发现与转化，学习中心承担功能教育和流程解释，形成“工具供给 + 商家培训”的组合。</p>
             </div>
             <div class="insight searchable" data-kind="insight">
-              <b>淘宝侧需人工核验</b>
-              <p>淘宝服务市场、生意管家、千牛 AI 在内置浏览器与 Chrome 插件中均触发自动访问安全限制；淘宝侧可由人工登录后截图或复制页面内容，再补录进日报。</p>
+              <b>淘宝首页推荐偏向刚需工具</b>
+              <p>截图样本覆盖 59 个首页推荐工具，集中在商品优化、交易发货、营销推广、客服管理、商品导购、内容工具；低价月付和免费试用是主要转化钩子。</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="taobao" data-kind="notice">
+      <section id="taobao" data-kind="tool">
         <div class="section-head">
-          <h2>淘宝服务市场 / 生意管家 / 千牛 AI</h2>
+          <h2>淘宝服务市场首页类目推荐</h2>
           <div class="source">
-            <a href="https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L">淘宝服务市场</a><br>
-            <a href="https://quick.taobao.com/">淘宝生意管家</a>｜<a href="https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT">千牛 AI</a>
+            来源：用户提供的淘宝服务市场首页截图<br>
+            采样类目：商品优化、交易发货、营销推广、客服管理、商品导购、内容工具
           </div>
         </div>
         <div class="body">
-          <div class="status searchable" data-kind="notice">
-            抓取失败，请人工检查。已分别尝试内置浏览器与 Chrome 插件打开淘宝服务市场、淘宝生意管家、千牛 AI，均被浏览器安全策略禁止自动访问。该失败不代表页面无内容，也不是账号密码错误。
+          <div class="status ok searchable" data-kind="insight">
+            本次将截图中的首页推荐转成图文卡片，共录入 59 个工具、12 个二级推荐位。页面可按工具名、功能、价格、销量和类目搜索；“用户运营”页签未提供截图，本次不做推断。
           </div>
+          <div class="insight-grid">
+            <div class="insight searchable" data-kind="insight">
+              <b>商品与履约是最大刚需</b>
+              <p>商品管理、详情工具、打单工具、进销存软件均以批量处理、自动化、低门槛月费为卖点，销量头部工具更集中在交易发货。</p>
+            </div>
+            <div class="insight searchable" data-kind="insight">
+              <b>AI已进入内容生产位</b>
+              <p>内容工具页集中推荐 AI 制片、AI 营销版、数字人直播与智能成片，说明淘宝侧也在把生成式内容能力放到首页曝光位。</p>
+            </div>
+            <div class="insight searchable" data-kind="insight">
+              <b>客服管理更偏效率与质检</b>
+              <p>绩效质检、知识库工单两组推荐突出客服对比、VOC、工单协同与接待效率，价格带集中在 68-88 元/月。</p>
+            </div>
+          </div>
+          <div id="taobaoCategoryCards"></div>
           <div class="notice-list">
-            <details class="searchable" data-kind="notice" open>
-              <summary>本次影响范围</summary>
-              <p>无法判断淘宝服务市场的新工具、公告、类目或页面结构变化；无法读取淘宝生意管家与千牛 AI 的最新页面信息。</p>
-            </details>
-            <details class="searchable" data-kind="insight">
-              <summary>建议处理方式</summary>
-              <p>你可以人工登录淘宝服务市场、淘宝生意管家、千牛 AI 页面，完成账号验证后截图或复制页面主要内容；日报流程再读取你提供的截图/文本，提取工具、公告、类目变化和页面策略变化，并同步更新到本网页。这样既不触发自动化访问限制，也能避免淘宝侧竞品更新漏报。</p>
+            <details class="searchable" data-kind="notice">
+              <summary>未采样范围</summary>
+              <p>顶部页签中“用户运营”未包含在本次截图内；后续如补充截图，可按同一结构追加到本节。</p>
             </details>
           </div>
         </div>
@@ -539,6 +641,164 @@
   </main>
 
   <script>
+    const taobaoCategories = [
+      {
+        name: "商品优化",
+        summary: "覆盖商品管理与详情页批量编辑，核心卖点是主图视频、商品复制、打单发货、自动上下架和水印标签。",
+        groups: [
+          {
+            name: "商品管理",
+            items: [
+              ["张飞商品分销", "批量修改、复制阿里", "15.0元/月起", "1.9万已买"],
+              ["工具吧网店助理", "主图视频、打单发货", "15.0元/月起", "8.3万已买"],
+              ["蚂蚁商品_", "手机详情、商品管理", "15.0元/月起", "1.4万已买"],
+              ["店管家", "高效管理多店铺订单，合单拆单", "15.0元/月起", "7.5万已买"],
+              ["赤兔商品", "主图视频、自动上下架", "30.0元/月", "7.7万已买"]
+            ]
+          },
+          {
+            name: "详情工具",
+            items: [
+              ["云惠店长助手", "竖图打标、免费试用", "10.0元/月", "少于100已买"],
+              ["字体排查", "字体检测", "29.0元/月", "少于100已买"],
+              ["361标签", "主图水印、主图标签", "10.0元/月起", "2500+已买"],
+              ["易尚货", "主图标签、智能抠图", "10.0元/月起", "800+已买"],
+              ["超级详情", "图片处理、主图水印", "20.0元/月", "8.6万已买"]
+            ]
+          }
+        ]
+      },
+      {
+        name: "交易发货",
+        summary: "推荐位集中在电子面单、评价管理、订单导入、库存同步和多店打单，强履约工具销量明显更高。",
+        groups: [
+          {
+            name: "打单工具",
+            items: [
+              ["旺店交易", "打单发货、电子面单", "28.0元/月", "36.9万已买"],
+              ["灵通打单", "订单发货、评价管理", "15.0元/月起", "6.0万已买"],
+              ["普云交易 打单", "自动评价、电子面单", "20.0元/月起", "67.9万已买"],
+              ["爱用交易打单", "打单发货、电子面单", "20.0元/月起", "10.3万已买"],
+              ["火牛交易", "短信营销、打单发货", "30.0元/月", "4.5万已买"]
+            ]
+          },
+          {
+            name: "进销存软件",
+            items: [
+              ["风火递多店打单", "电子面单、进销存管理", "0.0元起", "8500+已买"],
+              ["快递助手ERP", "售后管理、订单管理", "30.0元/月", "1.6万已买"],
+              ["管家在线版", "售后管理、订单导入", "80.0元", "300+已买"],
+              ["优易ERP", "库存管理、电子面单", "68.0元/月", "2500+已买"],
+              ["网店管家OL", "打单发货、库存管理", "30.0元/月起", "600+已买"]
+            ]
+          }
+        ]
+      },
+      {
+        name: "营销推广",
+        summary: "推广优化偏低价引流与资源车批量投放，促销工具仍以打折、满减、水印和素材处理为主。",
+        groups: [
+          {
+            name: "推广优化",
+            items: [
+              ["影锋软件One", "影锋软件无界直通车，提供店铺推广", "5.0元/月", "1000+已买"],
+              ["数智营销", "提供全面、精准、可落地的数据营销", "0.1元/月", "300+已买"],
+              ["流量推广宝", "流量推广、低价引流", "10.0元/月起", "500+已买"],
+              ["开车助理_无界推广", "资源车手、直通车批量", "158.0元/月起", "少于100已买"],
+              ["轻奈万相台AI", "基于自动化和人工智能技术", "0.01元/月起", "少于100已买"]
+            ]
+          },
+          {
+            name: "促销工具",
+            items: [
+              ["限时打折促销工具", "打折促销、限时打折", "15.0元/月起", "1500+已买"],
+              ["掌中宝促销打折", "打折促销、满就减", "15.0元/月起", "2.6万已买"],
+              ["美折促销打折", "优惠券、满减满包邮", "19.0元/月", "9.2万已买"],
+              ["淘助手", "短信营销、主图视频", "15.0元/月起", "2500+已买"],
+              ["欢乐逛打折促销水印", "主图水印、批量修改", "18.0元/月起", "5.9万已买"]
+            ]
+          }
+        ]
+      },
+      {
+        name: "客服管理",
+        summary: "以客服绩效、客服对比、智能质检、VOC和工单协同为主，强调降低管理成本与提升接待效率。",
+        groups: [
+          {
+            name: "绩效质检",
+            items: [
+              ["赤兔评价", "权限管理、邀评筛选", "88.0元/月", "400+已买"],
+              ["赤兔名品客服绩效", "客服工具、客服对比", "88.0元/月起", "3.6万已买"],
+              ["赤兔火眼", "提升转化率、节省人力", "88.0元/月起", "2500+已买"],
+              ["绩效雷达", "客服管理、客服工具", "88.0元/月起", "200+已买"],
+              ["魔方AI质检VOC", "智能质检、节省人力", "18.0元/月起", "少于100已买"]
+            ]
+          },
+          {
+            name: "知识库工单",
+            items: [
+              ["慧策客服通", "嵌入平台免切换，实时操作ERP", "0.01元/月起", "200+已买"],
+              ["聚工单", "客户管理、售后管理", "70.0元/月", "7.2万已买"],
+              ["客道精灵", "订单管理、客户管理", "68.0元/月起", "300+已买"],
+              ["万里牛ERP_客服插", "智能千牛客服协同助手", "68.0元/月", "500+已买"]
+            ]
+          }
+        ]
+      },
+      {
+        name: "商品导购",
+        summary: "推荐导购聚焦搭配购、选购助手、关联销售、首页推荐和定制化交易玩法，部分工具以0元/月吸引试用。",
+        groups: [
+          {
+            name: "推荐导购",
+            items: [
+              ["搭宝组合购", "搭配购、搭配不设限、超多组件", "80.0元/月", "少于100已买"],
+              ["A1疯狂搭配宝", "搭配折扣活动专题场景自定义页", "80.0元/月", "400+已买"],
+              ["选购助手", "选购助手、促转化", "0.0元/月", "4500+已买"],
+              ["搭配助手", "关联销售、促转化、提客单", "0.0元/月", "5500+已买"],
+              ["装修小卡", "首页商品、活动推荐，千人千面", "0.01元/月", "200+已买"]
+            ]
+          },
+          {
+            name: "交易创新",
+            items: [
+              ["无线盲盒", "趣味抽奖，提升购物沉浸度", "30.0元/月起", "少于100已买"],
+              ["在线拆福袋", "提升销量、粉丝暴涨、提升流量", "100.0元/月", "少于100已买"],
+              ["租号玩小程序", "自助选号", "0.01元/月", "100+已买"],
+              ["美美定制", "C2B 个性定制专业服务商", "1.0元/月", "少于100已买"],
+              ["来火定制", "覆盖80%泛定制行业", "50.0元/月", "100+已买"]
+            ]
+          }
+        ]
+      },
+      {
+        name: "内容工具",
+        summary: "视频工具和数字人直播成为首页高频推荐，突出低成本视频生成、商品视频发布和7x24小时直播。",
+        groups: [
+          {
+            name: "视频工具",
+            items: [
+              ["介子云短视频工具", "短视频生产利器，提升剪辑效率", "0.0元/月", "1000+已买"],
+              ["AI制片厂", "零基础一键生成宝贝视频", "0.0元/月起", "1.3万已买"],
+              ["AI制片厂 营销版", "AI智能生成阿里妈妈广告投放素材", "0.0元/月起", "5000+已买"],
+              ["稿定视频", "0基础搞定视频创作", "0.0元/月起", "300+已买"],
+              ["千牛智能成片", "利用商品信息自动生成多个视频", "0.0元", "2.5万已买"]
+            ]
+          },
+          {
+            name: "数字人直播",
+            items: [
+              ["美音数字人", "开箱即用，无店铺等级限制", "免费试用", "200+已买"],
+              ["麦兔数字人直播", "麦兔直播、数字人", "免费试用", "700+已买"],
+              ["淘宝官方数字人", "淘宝直播官方数字人服务", "499.0元/月起", "2000+已买"],
+              ["特看科技数字人", "提供数字人直播服务、代运营", "免费试用", "900+已买"],
+              ["智播AI数字人直播", "声音、数字人", "免费试用", "3500+已买"]
+            ]
+          }
+        ]
+      }
+    ];
+
     const tools = [
       ["飞影AI", "面向电商商家的用户反馈智能分析工具，基于 AI 拆解竞品/自家商品公开评价，识别用户痛点、市场机会和产品优化方向。", "免费试用", "100", "127", "精选AI服务"],
       ["麦爆了_Ai诊断运营助手", "AI 一键诊断店铺质量分、商品搜索诊断、商品质量分，批量或自动优化商品信息。", "免费试用", "100", "96", "精选AI服务"],
@@ -562,6 +822,50 @@
       ["2026/06/29", "更", "“直播间满额返”活动合作协议", "直播间活动协议更新。"],
       ["2026/06/29", "更", "抖音到店安装项目-额外加收费用报价", "本地服务履约收费说明。"]
     ];
+
+    const iconColors = ["#2563eb", "#0f766e", "#f97316", "#7c3aed", "#dc2626", "#0891b2", "#16a34a", "#db2777"];
+    function shortName(name) {
+      return name.replace(/[A-Za-z0-9_.\s-]/g, "").slice(0, 2) || name.slice(0, 2);
+    }
+
+    document.querySelector("#taobaoCategoryCards").innerHTML = taobaoCategories.map((category, categoryIndex) => {
+      const total = category.groups.reduce((sum, group) => sum + group.items.length, 0);
+      const groups = category.groups.map((group, groupIndex) => `
+        <div class="category-block">
+          <div class="category-head">
+            <div>
+              <h3>${category.name}｜${group.name}</h3>
+              <p>${category.summary}</p>
+            </div>
+            <div class="category-stat">
+              <span class="tag green">${group.items.length}个推荐</span>
+              <span class="tag gray">类目合计${total}个</span>
+            </div>
+          </div>
+          <div class="tool-list">
+            ${group.items.map((item, itemIndex) => {
+              const [name, desc, price, buyers] = item;
+              const color = iconColors[(categoryIndex + groupIndex + itemIndex) % iconColors.length];
+              return `
+                <article class="tool-mini searchable" data-kind="tool">
+                  <div class="tool-icon" style="background:${color}">${shortName(name)}</div>
+                  <div>
+                    <h4>${name}</h4>
+                    <p>${desc}</p>
+                    <div class="tags">
+                      <span class="tag green">${price}</span>
+                      <span class="tag">${buyers}</span>
+                      <span class="tag gray">${category.name} / ${group.name}</span>
+                    </div>
+                  </div>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+      return groups;
+    }).join("");
 
     const toolCards = document.querySelector("#toolCards");
     toolCards.innerHTML = tools.map(([name, desc, price, score, buyers, category]) => `
