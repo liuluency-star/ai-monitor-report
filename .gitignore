@@ -1,4 +1,7 @@
 node_modules/
+outputs/
 outputs/**/*.inspect.ndjson
 outputs/**/*.png
+scripts/
 *.log
+*.tmp
