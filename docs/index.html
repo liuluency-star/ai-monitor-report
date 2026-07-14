@@ -1,277 +1,111 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>抖音-飞影AI洞察工具关联主体概况</title>
-  <style>
-    :root {
-      --bg: #f6f7fb;
-      --panel: #fff;
-      --text: #18212f;
-      --muted: #637085;
-      --line: #dde3ec;
-      --blue: #1f6feb;
-      --blue-soft: #eaf2ff;
-      --green: #138a45;
-      --orange: #b45f06;
-      --red: #b42318;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
-      line-height: 1.45;
-    }
-    header {
-      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
-      border-bottom: 1px solid var(--line);
-    }
-    .wrap { max-width: 1320px; margin: 0 auto; padding: 22px 24px; }
-    h1 { margin: 0 0 8px; font-size: 26px; letter-spacing: 0; }
-    h2 { margin: 0 0 12px; font-size: 18px; }
-    .sub { color: var(--muted); font-size: 14px; }
-    .grid { display: grid; gap: 14px; }
-    .metrics { grid-template-columns: repeat(4, minmax(150px, 1fr)); margin-top: 16px; }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px;
-    }
-    .metric-label { color: var(--muted); font-size: 13px; }
-    .metric-value { margin-top: 5px; font-size: 28px; font-weight: 760; }
-    .metric-note { margin-top: 4px; color: var(--muted); font-size: 12px; }
-    .research-summary { margin-top: 16px; }
-    .research-summary h2 { margin-bottom: 8px; }
-    .research-summary p { margin: 0; color: var(--text); font-size: 14px; }
-    main .wrap { padding-top: 18px; }
-    .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-    .tab {
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 999px;
-      padding: 8px 12px;
-      cursor: pointer;
-      color: var(--text);
-    }
-    .tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
-    .cols { grid-template-columns: minmax(320px, .8fr) minmax(520px, 1.2fr); }
-    .company-title { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 3px 8px;
-      font-size: 12px;
-      background: var(--blue-soft);
-      color: var(--blue);
-      white-space: nowrap;
-    }
-    .kv { display: grid; grid-template-columns: 92px 1fr; gap: 8px 12px; margin-top: 14px; font-size: 14px; }
-    .kv div:nth-child(odd) { color: var(--muted); }
-    .bar-row { display: grid; grid-template-columns: 150px 1fr 86px; gap: 10px; align-items: center; margin: 10px 0; font-size: 13px; }
-    .bar-track { height: 12px; background: #edf1f7; border-radius: 999px; overflow: hidden; }
-    .bar-fill { height: 100%; background: var(--blue); border-radius: 999px; min-width: 2px; }
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th, td { padding: 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-    th { color: var(--muted); font-weight: 650; background: #fafbfe; }
-    tr:hover td { background: #fbfdff; }
-    .sales { font-weight: 700; color: var(--green); white-space: nowrap; }
-    .unknown { color: var(--orange); }
-    .source-list a { color: var(--blue); text-decoration: none; }
-    .source-list a:hover { text-decoration: underline; }
-    .footnote { color: var(--muted); font-size: 12px; }
-    @media (max-width: 900px) {
-      .metrics, .cols { grid-template-columns: 1fr; }
-      .bar-row { grid-template-columns: 1fr; }
-      th:nth-child(4), td:nth-child(4) { display: none; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>竞对服务市场每日监控简报 2026-07-07</title>
+<style>
+:root{color-scheme:light;--ink:#1c2430;--muted:#617080;--line:#d8e0e8;--paper:#ffffff;--band:#f4f7fa;--blue:#1f66d1;--green:#0d8a6a;--amber:#a26200;--red:#b3261e}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;color:var(--ink);background:#eef2f6;line-height:1.55;letter-spacing:0}
+header{background:#19324d;color:#fff;padding:28px 32px 24px}header h1{margin:0;font-size:28px;line-height:1.25}header p{margin:10px 0 0;color:#d9e6f5}
+main{max-width:1180px;margin:0 auto;padding:22px 18px 48px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}.toolbar button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 12px;border-radius:6px;cursor:pointer}.toolbar button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.metric{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px}.metric strong{font-size:24px;display:block}.metric span{color:var(--muted);font-size:13px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px;margin:14px 0}h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:18px 0 8px}.findings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.finding{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfe}.finding-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.finding-head span{font-weight:700}.finding-head b{font-size:12px;border-radius:999px;padding:3px 8px;background:#eef4ff;color:var(--blue);white-space:nowrap}.finding p{margin:10px 0;color:#334155}.finding a,.source{color:var(--blue);word-break:break-all;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}th{background:var(--band);font-weight:700;position:sticky;top:0}tbody tr:hover{background:#f8fbff}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.note{border-left:4px solid var(--green);background:#f4fbf8;padding:12px;border-radius:6px}.warning{border-left-color:var(--amber);background:#fff8ed}.empty{border-left-color:var(--red);background:#fff5f4}
+footer{color:var(--muted);font-size:12px;margin-top:16px}.hide-manual tr[data-status="manual"]{display:none}.hide-partial tr[data-status="partial"]{display:none}
+@media(max-width:800px){header{padding:22px 18px}header h1{font-size:23px}.grid,.findings,.notes{grid-template-columns:1fr}section{padding:14px}table{font-size:12px}}
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1>抖音-飞影AI洞察工具关联主体概况</h1>
-      <div class="sub">采集时间：2026-07-09｜范围：温州晓风科技有限公司、温州紫风科技电子商务有限公司、温州欢腾软件有限公司</div>
-      <section class="card research-summary">
-        <h2>服务商调研摘要</h2>
-        <p>温州本土电商 SaaS / AI 工具服务商，早期以“至尊宝插件”等电商工具起家，当前重点打造飞影 AI、AI 生图生视频、商品管理等产品。与 1688、抖音有深度合作，已在抖音服务市场上线相关应用。公司整体规模为数百人，技术团队约百人级别，在多地设有分公司或驻点规划；老板曾任搜狐技术总监，开发总监有阿里背景；店群模式起家，主要以中小商家为主，KA 客户包括晨光和森马。</p>
-      </section>
-      <div class="grid metrics">
-        <div class="card"><div class="metric-label">覆盖主体</div><div class="metric-value" id="m-companies">3</div><div class="metric-note">均匹配到服务商主页</div></div>
-        <div class="card"><div class="metric-label">工具总数</div><div class="metric-value" id="m-tools">11</div><div class="metric-note">服务商主页公开展示</div></div>
-        <div class="card"><div class="metric-label">订购量下限合计</div><div class="metric-value" id="m-sales">34.1万+</div><div class="metric-note">“万+ / 千+”按下限折算</div></div>
-        <div class="card"><div class="metric-label">公开融资记录</div><div class="metric-value">0</div><div class="metric-note">未检索到公开融资事件</div></div>
-      </div>
+<header>
+  <h1>竞对服务市场每日监控简报</h1>
+  <p>2026年7月7日｜限定来源：淘宝服务市场、抖店服务市场、淘宝生意管家、千牛AI、抖店学习中心、36氪快讯</p>
+</header>
+<main>
+  <div class="toolbar">
+    <button class="active" data-filter="all">全部工具行</button>
+    <button data-filter="partial">仅看可抓取线索</button>
+    <button data-filter="manual">仅看人工补录</button>
+  </div>
+  <div class="grid">
+    <div class="metric"><strong>6</strong><span>限定监控页面</span></div>
+    <div class="metric"><strong>2</strong><span>部分可抓取页面</span></div>
+    <div class="metric"><strong>3</strong><span>淘宝侧人工补录</span></div>
+    <div class="metric"><strong>0</strong><span>可见新公司融资快讯</span></div>
+  </div>
+  <section>
+    <h2>今日结论</h2>
+    <div class="notes">
+      <div class="note">抖音服务市场公开类目信号集中在客服、数据、订单/商品管理、ERP、广告与代运营。</div>
+      <div class="note warning">淘宝服务市场、生意管家、千牛AI均返回应用壳，按约束保留人工登录补录。</div>
+      <div class="note empty">36氪快讯当次可见范围未发现新公司融资消息。</div>
     </div>
-  </header>
+  </section>
+  <section>
+    <h2>页面观察与变化</h2>
+    <div class="findings">
+    <article class="finding" data-status="人工登录补录">
+      <div class="finding-head"><span>淘宝服务市场</span><b>人工登录补录</b></div>
+      <p>页面 HTTP 200 且标题为“服务市场”，但静态内容仅为应用壳与埋点脚本，未披露新上架/推荐工具、价格、评分、购买量、续订率。按自动化约束，不使用 Playwright/CDP/脚本绕过淘宝侧安全限制，保留人工登录补录。</p>
+      <a href="https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L">https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L</a>
+    </article>
 
-  <main>
-    <div class="wrap">
-      <div class="toolbar" id="tabs"></div>
-      <section class="grid cols">
-        <div class="card">
-          <div class="company-title">
-            <div>
-              <h2 id="company-name"></h2>
-              <div class="sub" id="company-summary"></div>
-            </div>
-            <span class="tag" id="tool-count"></span>
-          </div>
-          <div class="kv" id="company-kv"></div>
-        </div>
-        <div class="card">
-          <h2>订购量分布</h2>
-          <div id="bars"></div>
-          <div class="footnote">注：平台显示“已售--”按未知处理，不纳入合计；“已售100+”等按 100 的下限计。</div>
-        </div>
-      </section>
+    <article class="finding" data-status="部分可抓取">
+      <div class="finding-head"><span>抖音精选服务市场</span><b>部分可抓取</b></div>
+      <p>公开页面标题为“抖店服务市场”；页面描述称其依托短视频、直播内容电商生态，聚合商家经营链路第三方服务工具。meta 关键词显示当前重点类目包括客服解决方案、数据服务、订单管理、商品管理、电商ERP、千川广告服务、营销管理、客服工具、店铺代运营、培训、认证服务等。未在静态 HTML 中抓到具体工具名称、价格、评分、购买量、续订率。</p>
+      <a href="https://fuwu.jinritemai.com/">https://fuwu.jinritemai.com/</a>
+    </article>
 
-      <section class="card" style="margin-top:14px;">
-        <h2>工具明细</h2>
-        <table>
-          <thead><tr><th>主体</th><th>工具名称</th><th>订购量</th><th>评分</th><th>简介</th></tr></thead>
-          <tbody id="tool-table"></tbody>
-        </table>
-      </section>
+    <article class="finding" data-status="人工登录补录">
+      <div class="finding-head"><span>淘宝生意管家</span><b>人工登录补录</b></div>
+      <p>页面 HTTP 200 且标题为“生意管家”，但业务内容为前端渲染应用壳，未披露公告、功能更新或服务明细。按约束保留人工登录补录。</p>
+      <a href="https://quick.taobao.com/">https://quick.taobao.com/</a>
+    </article>
 
-      <section class="card" style="margin-top:14px;">
-        <h2>数据来源与口径</h2>
-        <div class="source-list" id="sources"></div>
-        <p class="footnote">工商基础字段来自爱企查搜索结果页，页面页脚列明数据来源包括国家企业信用信息公示系统、信用中国、中国裁判文书网等。融资信息口径为公开网页检索结果与工商页搜索结果，未发现明确融资轮次、金额或投资方记录。</p>
-      </section>
-    </div>
-  </main>
+    <article class="finding" data-status="人工登录补录">
+      <div class="finding-head"><span>千牛AI相关信息</span><b>人工登录补录</b></div>
+      <p>页面 HTTP 200 且标题为“AI学堂-淘宝官方学习中心”，但未在静态 HTML 中披露课程/工具/公告正文。按约束保留人工登录补录。</p>
+      <a href="https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT">https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT</a>
+    </article>
 
-  <script>
-    const companies = [
-      {
-        name: "温州晓风科技有限公司",
-        short: "晓风科技",
-        providerId: "7029924517795332388",
-        legalPerson: "张长春",
-        capital: "2,000万(元)",
-        founded: "2021-10-09",
-        status: "开业；A级纳税人(2025)；小微企业",
-        address: "浙江省温州市鹿城区南郊街道洛河路15号中国智能谷软件园B栋2层203室",
-        financing: "未检索到公开融资记录",
-        aiqicha: "https://aiqicha.baidu.com/s?q=%E6%B8%A9%E5%B7%9E%E6%99%93%E9%A3%8E%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8",
-        provider: "https://fuwu.jinritemai.com/providerHomepage?id=7029924517795332388",
-        tools: [
-          { name: "晓风agent", score: "60分", salesText: "已售69", sales: 69, intro: "依托 AI 智能体能力，自动完成市场商机分析、爆款选品、货源匹配、批量上货。" },
-          { name: "晓风商品优化-体验基础分提升", score: "92分", salesText: "已售2千+", sales: 2000, intro: "AI爆品裂变、以图搜款、滞销商品翻新、批量修改、AI违规商品检测、AI换标题/SKU/主图等。" },
-          { name: "晓风上货-商品管理搬家", score: "92分", salesText: "已售20万+", sales: 200000, intro: "爆款商品裂变、商品侵权检测、换主图/标题/水印、1688分销铺货、批量编辑等。" },
-          { name: "晓风一键下单", score: "96分", salesText: "已售10万+", sales: 100000, intro: "分销代发工具，支持多店铺管理、1688采购、隐私号下单、自动回流、自动售后、利润统计。" }
-        ]
-      },
-      {
-        name: "温州紫风科技电子商务有限公司",
-        short: "紫风科技",
-        providerId: "1425413324152675",
-        legalPerson: "张长春",
-        capital: "500万(元)",
-        founded: "2021-03-31",
-        status: "开业；小微企业",
-        address: "浙江省温州市鹿城区南郊街道洛河路15号中国智能谷软件园B栋2层202室",
-        financing: "未检索到公开融资记录",
-        aiqicha: "https://aiqicha.baidu.com/s?q=%E6%B8%A9%E5%B7%9E%E7%B4%AB%E9%A3%8E%E7%A7%91%E6%8A%80%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8",
-        provider: "https://fuwu.jinritemai.com/providerHomepage?id=1425413324152675",
-        tools: [
-          { name: "至尊宝商品优化_标题搜索SEO_一键比价", score: "96分", salesText: "已售4千+", sales: 4000, intro: "一键标题SEO/搜索优化、商品基础分优化、一键比价、批量营销设置、商品优化。" },
-          { name: "小尊宝搬家上货", score: "78分", salesText: "已售1万+", sales: 10000, intro: "商品批量编辑、多店集中管理、违规风险预测、侵权辅助检测、标题/主图/SKU优化。" },
-          { name: "小尊宝一键下单", score: "96分", salesText: "已售2千+", sales: 2000, intro: "1688官方接口，支持多店铺管理、密文下单、自动采购、自动发货、自动售后、利润统计。" }
-        ]
-      },
-      {
-        name: "温州欢腾软件有限公司",
-        short: "欢腾软件",
-        providerId: "2849554846193373",
-        legalPerson: "陈渊佑",
-        capital: "2,000万(元)",
-        founded: "2016-10-18",
-        status: "开业；曾用名；小微企业",
-        address: "浙江省温州市鹿城区南郊街道洛河路15号中国智能谷软件园B栋2层201室",
-        financing: "未检索到公开融资记录",
-        aiqicha: "https://aiqicha.baidu.com/s?q=%E6%B8%A9%E5%B7%9E%E6%AC%A2%E8%85%BE%E8%BD%AF%E4%BB%B6%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8",
-        provider: "https://fuwu.jinritemai.com/providerHomepage?id=2849554846193373",
-        tools: [
-          { name: "飞影AI", score: "98分", salesText: "已售100+", sales: 100, intro: "AI应用，服务商主页公开展示为热销工具。" },
-          { name: "飞影云桌面", score: "100分", salesText: "已售--", sales: null, intro: "多平台店铺安全管理系统，独立IP隔离防止关联，一账号多开、店铺云化。" },
-          { name: "船长商品管理-AI智能选品", score: "82分", salesText: "已售1万+", sales: 10000, intro: "商品复制、AI爆款裂变、批量修改、选品中心、一键铺货、福利品货盘、AI商品运营。" },
-          { name: "船长一键下单", score: "94分", salesText: "已售2千+", sales: 2000, intro: "分销代发工具，支持多店铺管理、1688采购、隐私号下单、自动回流、自动售后、利润统计。" }
-        ]
-      }
-    ];
+    <article class="finding" data-status="部分可抓取">
+      <div class="finding-head"><span>抖店学习中心-功能中心</span><b>部分可抓取</b></div>
+      <p>页面返回学习中心前端应用壳，可见受保护接口范围包含 /api/school、/api/eschool、/api/open/eschool，资源中存在 FunctionCenter 页面模块；具体功能中心条目未在静态 HTML 中披露。</p>
+      <a href="https://school.jinritemai.com/doudian/web/funcs/11712?tabKey=funcs&amp;from=shop_table&amp;btm_ppre=a4977.b4369.c0.d0&amp;btm_pre=a4977.b7658.c0.d0&amp;btm_show_id=cae8adaf-0218-4d74-8cc2-6d7eeb667065">https://school.jinritemai.com/doudian/web/funcs/11712?tabKey=funcs&amp;from=shop_table&amp;btm_ppre=a4977.b4369.c0.d0&amp;btm_pre=a4977.b7658.c0.d0&amp;btm_show_id=cae8adaf-0218-4d74-8cc2-6d7eeb667065</a>
+    </article>
 
-    const totalTools = companies.reduce((sum, c) => sum + c.tools.length, 0);
-    const totalSales = companies.flatMap(c => c.tools).reduce((sum, t) => sum + (t.sales || 0), 0);
-    document.getElementById("m-tools").textContent = totalTools;
-    document.getElementById("m-sales").textContent = (totalSales / 10000).toFixed(1) + "万+";
-
-    const tabs = document.getElementById("tabs");
-    let active = 0;
-    companies.forEach((c, i) => {
-      const b = document.createElement("button");
-      b.className = "tab" + (i === 0 ? " active" : "");
-      b.textContent = c.short;
-      b.onclick = () => render(i);
-      tabs.appendChild(b);
-    });
-
-    function formatSales(n) {
-      if (n == null) return "未知";
-      if (n >= 10000) return (n / 10000).toFixed(n % 10000 ? 1 : 0) + "万+";
-      if (n >= 1000) return (n / 1000).toFixed(n % 1000 ? 1 : 0) + "千+";
-      return String(n);
-    }
-
-    function render(i) {
-      active = i;
-      document.querySelectorAll(".tab").forEach((el, idx) => el.classList.toggle("active", idx === i));
-      const c = companies[i];
-      document.getElementById("company-name").textContent = c.name;
-      document.getElementById("company-summary").textContent = `服务商ID：${c.providerId}`;
-      document.getElementById("tool-count").textContent = `${c.tools.length} 个工具`;
-      const kv = [
-        ["法定代表人", c.legalPerson],
-        ["注册资本", c.capital],
-        ["成立时间", c.founded],
-        ["登记状态", c.status],
-        ["注册地址", c.address],
-        ["融资信息", c.financing]
-      ];
-      document.getElementById("company-kv").innerHTML = kv.map(([k, v]) => `<div>${k}</div><div>${v}</div>`).join("");
-      const max = Math.max(...c.tools.map(t => t.sales || 0), 1);
-      document.getElementById("bars").innerHTML = c.tools.map(t => `
-        <div class="bar-row">
-          <div>${t.name}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${((t.sales || 0) / max) * 100}%"></div></div>
-          <div class="${t.sales == null ? "unknown" : "sales"}">${t.salesText.replace("已售", "")}</div>
-        </div>
-      `).join("");
-    }
-
-    document.getElementById("tool-table").innerHTML = companies.flatMap(c => c.tools.map(t => `
-      <tr>
-        <td>${c.short}</td>
-        <td>${t.name}</td>
-        <td class="${t.sales == null ? "unknown" : "sales"}">${t.salesText}</td>
-        <td>${t.score}</td>
-        <td>${t.intro}</td>
-      </tr>
-    `)).join("");
-
-    document.getElementById("sources").innerHTML = companies.map(c => `
-      <p><strong>${c.short}</strong>：
-        <a href="${c.provider}" target="_blank" rel="noopener">抖音服务市场服务商主页</a>
-        · <a href="${c.aiqicha}" target="_blank" rel="noopener">爱企查工商搜索结果</a>
-      </p>
-    `).join("");
-
-    render(0);
-  </script>
+    <article class="finding" data-status="未发现当次可见融资">
+      <div class="finding-head"><span>36氪融资快讯</span><b>未发现当次可见融资</b></div>
+      <p>36氪快讯 2026-07-07 可见列表主要为宏观、上市公司公告、债券发行、产业投产、业绩预告等；关键词核验未发现“新公司融资/完成融资轮次”类消息。本次日报记录为：未在当次可抓取范围发现每日最新新公司融资消息。</p>
+      <a href="https://36kr.com/newsflashes/">https://36kr.com/newsflashes/</a>
+    </article></div>
+  </section>
+  <section>
+    <h2>工具/服务明细表</h2>
+    <div class="table-wrap" id="toolTable"><table>
+      <thead><tr><th>应用名称</th><th>公司名称</th><th>功能描述</th><th>应用分数</th><th>购买量</th><th>续订率</th><th>是否免费试用</th><th>免费试用天数</th><th>网页出处</th></tr></thead>
+      <tbody><tr data-source="https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L" data-status="manual"><td>淘宝服务市场（人工登录补录）</td><td>未披露</td><td>抓取失败，请人工检查；页面返回“服务市场”应用壳，未直接披露具体应用、评分、购买量、价格等字段。</td><td></td><td></td><td></td><td>否</td><td></td><td>https://fuwu.taobao.com/?spm=a1z13.fuwu_search_result_2023.0.0.2e165acapbw20L</td></tr>
+<tr data-source="https://fuwu.jinritemai.com/" data-status="partial"><td>抖店服务市场（服务市场入口）</td><td>抖音电商/抖店服务市场</td><td>公开 meta 描述显示其聚合商家经营链路中的第三方服务工具，覆盖客服解决方案、数据服务、订单管理、商品管理、电商ERP、千川广告服务、营销管理、客服工具、代运营、培训、认证等。</td><td></td><td></td><td></td><td>未披露</td><td></td><td>https://fuwu.jinritemai.com/</td></tr>
+<tr data-source="https://quick.taobao.com/" data-status="manual"><td>淘宝生意管家（人工登录补录）</td><td>淘宝</td><td>抓取失败，请人工检查；页面返回“生意管家”应用壳，核心业务内容需要登录态或前端渲染。</td><td></td><td></td><td></td><td>否</td><td></td><td>https://quick.taobao.com/</td></tr>
+<tr data-source="https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT" data-status="manual"><td>千牛AI学堂（人工登录补录）</td><td>淘宝/千牛</td><td>抓取失败，请人工检查；页面返回“AI学堂-淘宝官方学习中心”应用壳，课程/公告明细未在静态 HTML 中披露。</td><td></td><td></td><td></td><td>否</td><td></td><td>https://daxue.taobao.com/college/ai?spm=a1z14.29162303.hometopleft.9.289657e6SiaSJT</td></tr>
+<tr data-source="https://school.jinritemai.com/doudian/web/funcs/11712?tabKey=funcs&amp;from=shop_table&amp;btm_ppre=a4977.b4369.c0.d0&amp;btm_pre=a4977.b7658.c0.d0&amp;btm_show_id=cae8adaf-0218-4d74-8cc2-6d7eeb667065" data-status="manual"><td>抖店学习中心-功能中心</td><td>抖音电商学习中心</td><td>页面返回功能中心前端应用壳，可见路由/资源指向 FunctionCenter；具体功能条目需前端接口或登录态渲染，本次未抓到明细。</td><td></td><td></td><td></td><td>未披露</td><td></td><td>https://school.jinritemai.com/doudian/web/funcs/11712?tabKey=funcs&amp;from=shop_table&amp;btm_ppre=a4977.b4369.c0.d0&amp;btm_pre=a4977.b7658.c0.d0&amp;btm_show_id=cae8adaf-0218-4d74-8cc2-6d7eeb667065</td></tr></tbody>
+    </table></div>
+  </section>
+  <section>
+    <h2>综合洞察</h2>
+    <ol><li>抖音服务市场公开定位仍围绕“内容电商经营链路”展开，类目关键词集中在客服、数据、订单/商品管理、ERP、广告投放和代运营，说明工具供给继续贴近商家日常运营效率与投放转化。</li><li>淘宝侧三个页面均可达但业务内容前端化/登录态化明显，自动化日报需要将“可访问性监控”和“人工登录补录”拆开，避免把应用壳误读为无更新。</li><li>36氪今日可见快讯未出现新公司融资消息，资本市场公开快讯对服务市场竞争格局的当天增量信号较弱，应继续重点跟踪平台内类目、推荐位与公告变化。</li></ol>
+  </section>
+  <footer>本页为单文件 UTF-8 HTML，无外部资源依赖。所有结论均标明网页出处；未抓取到业务正文的页面已标注人工补录或抓取失败。</footer>
+</main>
+<script>
+const wrap=document.getElementById('toolTable');
+document.querySelectorAll('.toolbar button').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.toolbar button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  wrap.classList.toggle('hide-manual',btn.dataset.filter==='partial');
+  wrap.classList.toggle('hide-partial',btn.dataset.filter==='manual');
+}));
+</script>
 </body>
 </html>
